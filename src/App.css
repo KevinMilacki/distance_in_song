@@ -28,6 +28,21 @@
   color: #61dafb;
 }
 
+h1 {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 5rem;
+  text-align: center;
+
+}
+
+.card.custom-spotify {
+  background: green;
+}
+
+.card.custom-google {
+  background: blue;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
