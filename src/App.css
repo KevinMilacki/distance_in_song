@@ -37,10 +37,16 @@ h1 {
 
 .card.custom-spotify {
   background: green;
+  color: white;
 }
 
 .card.custom-google {
   background: blue;
+  color: white;
+}
+
+.div.list-group.song-list {
+  display: none;
 }
 
 @keyframes App-logo-spin {
