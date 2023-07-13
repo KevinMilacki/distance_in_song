@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { ListGroup } from "react-bootstrap";
 
 
-const SongComponent = ({ query, accessToken, onSongSelect }) => {
+const SongComponent = ({ query, accessToken, onSongSelect, onSongNameSelect }) => {
   const [songs, setSongs] = useState([]);
   const [selectedSong, setSelectedSong] = useState(null);
 
@@ -34,8 +34,8 @@ const SongComponent = ({ query, accessToken, onSongSelect }) => {
   const handleSongClick = (song) => {
     setSelectedSong(song);
     onSongSelect(song.duration_ms);
-  };
-
+    onSongNameSelect(song.name);
+  }
   return (
     <div>
       {songs.length > 0 ? (
@@ -46,9 +46,9 @@ const SongComponent = ({ query, accessToken, onSongSelect }) => {
               active={selectedSong === song}
               onClick={() => handleSongClick(song)}
             >
-              <img src={song.album.images[2].url} alt={song.name} />
+              <img className="mb-3 px-5" src={song.album.images[2].url} alt={song.name} />
               
-              {song.artists[0].name} - {song.name}
+             <span> {song.artists[0].name} - {song.name} </span>
             </ListGroup.Item>
           ))}
         </ListGroup>

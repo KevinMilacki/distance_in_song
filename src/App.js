@@ -8,9 +8,14 @@ import SongForm from "./SongForm";
 function App() {
   const [token, setToken] = useState("");
   const [selectedSongDuration, setSelectedSongDuration] = useState(0);
+  const [selectedSongName, setSelectedSongName] = useState('');
 
   const handleSongSelect = (durationMs) => {
     setSelectedSongDuration(durationMs);
+  };
+
+  const handleSongNameSelect = (songName) => {
+    setSelectedSongName(songName);
   };
 
   const fetchToken = async () => {
@@ -53,8 +58,13 @@ function App() {
               <Card.Body>
                 <Card.Title>Spotify Side</Card.Title>
 
-                <SongForm accessToken={token} onSongSelect={handleSongSelect} />
+                <SongForm 
+                  accessToken={token} 
+                  onSongSelect={handleSongSelect}  
+                  onSongNameSelect={handleSongNameSelect}
+                />
                 <p>Selected Song Duration: {selectedSongDuration} ms</p>
+                <p>Selected Song Name: {selectedSongName}</p>
               </Card.Body>
             </Card>
           </Col>
