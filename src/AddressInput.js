@@ -15,7 +15,7 @@ import "@reach/combobox/styles.css";
 
 export default function AddressInput({token}) {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyBWGu6w3Fti-hWuTYICzx1U4Ruckpw4vWU",
+    googleMapsApiKey: ,
     libraries: ["places"],
   });
 
