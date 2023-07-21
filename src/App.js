@@ -2,13 +2,33 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
+import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 import SongList from "./SongList";
 import SongForm from "./SongForm";
+import AddressInput from "./AddressInput";
+import DistanceCalculator from './DistanceCalculator';
 
 function App() {
   const [token, setToken] = useState("");
+  const [googleToken, setGoogleToken] =useState("");
   const [selectedSongDuration, setSelectedSongDuration] = useState(0);
   const [selectedSongName, setSelectedSongName] = useState('');
+  
+  
+  function Home() {const {isLoaded} = useLoadScript({
+    googleMapsApiKey: googleToken
+  });
+    if (!isLoaded) return <div>is Loading</div>
+    return <Map />
+};
+
+  function Map() {
+    <GoogleMap
+    zoom={10} 
+    center={{ lat: 44, lng: -80}}
+    mapContainerClassName="map-container"
+   > </GoogleMap>
+  }
 
   const handleSongSelect = (durationMs) => {
     setSelectedSongDuration(durationMs);
@@ -18,9 +38,9 @@ function App() {
     setSelectedSongName(songName);
   };
 
-  const fetchToken = async () => {
+  const fetchSpotifyToken = async () => {
     try {
-      const response = await fetch("http://localhost:3001/api/test");
+      const response = await fetch("http://localhost:3001/api/spotifykey");
 
       if (response.ok) {
         const data = await response.text();
@@ -33,9 +53,27 @@ function App() {
     }
   };
 
+  const fetchGoogleToken = async () => {
+    try {
+      const response = await fetch("http://localhost:3001/api/googlekey");
+
+      if (response.ok) {
+        const data = await response.text();
+        setGoogleToken(data); // Display the retrieved string
+      } else {
+        throw new Error("Error:1 " + response.status);
+      }
+    } catch (error) {
+      console.error("Error:2", error);
+    }
+  };
+
   useEffect(() => {
-    fetchToken();
+    fetchSpotifyToken();
+    fetchGoogleToken();
   }, []);
+
+
 
   const [selectedItem, setSelectedItem] = useState(null);
 
@@ -72,27 +110,8 @@ function App() {
             <Card className="custom-google">
               <Card.Body>
                 <Card.Title>Google Side</Card.Title>
-                <Form>
-                  <Form.Group className="mb-3" controlId="formOrigin">
-                    <Form.Label>Origin</Form.Label>
-                    <Form.Control type="text" placeholder="Origin" />
-                    <Form.Text className="text-muted">
-                      Enter Starting Point
-                    </Form.Text>
-                  </Form.Group>
-
-                  <Form.Group className="mb-3" controlId="formDestination">
-                    <Form.Label>Destination</Form.Label>
-                    <Form.Control type="text" placeholder="Destination" />
-                    <Form.Text className="text-muted">
-                      Enter Ending Point
-                    </Form.Text>
-                  </Form.Group>
-
-                  <Button variant="primary" type="submit" className="mb-3">
-                    Submit
-                  </Button>
-                </Form>
+                <Map />
+               <AddressInput token={googleToken} />
               </Card.Body>
             </Card>
           </Col>
