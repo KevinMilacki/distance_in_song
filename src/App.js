@@ -3,16 +3,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import { GoogleMap, useLoadScript } from "@react-google-maps/api";
-import SongList from "./SongList";
+
 import SongForm from "./SongForm";
-import AddressInput from "./AddressInput";
-import DistanceCalculator from './DistanceCalculator';
+
+
+import MapWithAutocomplete from "./MapWithAutocomplete";
 
 function App() {
   const [token, setToken] = useState("");
-  const [googleToken, setGoogleToken] =useState("");
+  const [googleToken, setGoogleToken] = useState("");
   const [selectedSongDuration, setSelectedSongDuration] = useState(0);
   const [selectedSongName, setSelectedSongName] = useState('');
+  const [timeInMs, setTimeInMs] = useState(null);
   
   
   function Home() {const {isLoaded} = useLoadScript({
@@ -75,6 +77,10 @@ function App() {
 
 
 
+  const handleTimeCalculated = (time) => {
+    setTimeInMs(time);
+  };
+
   const [selectedItem, setSelectedItem] = useState(null);
 
   const handleItemClick = (item) => {
@@ -111,7 +117,16 @@ function App() {
               <Card.Body>
                 <Card.Title>Google Side</Card.Title>
                 <Map />
-               <AddressInput token={googleToken} />
+                <MapWithAutocomplete
+        origin="Origin Address"
+        destination="Destination Address"
+        onTimeCalculated={handleTimeCalculated}
+        googleMapsApiKey={googleToken}
+      />
+      {/* {timeInMs !== null && <p>Time to travel: {timeInMs} ms</p>} */}
+      <p>Time to travel: {timeInMs} ms</p>
+    
+               <Home />
               </Card.Body>
             </Card>
           </Col>
