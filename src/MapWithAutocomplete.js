@@ -88,8 +88,7 @@ const MapWithAutocomplete = ({ onTimeCalculated, googleMapsApiKey }) => {
   return (
     <>
       <Row>
-      
-          <Form.Group controlId="originAddress" >
+                 <Form.Group controlId="originAddress" >
             <Form.Label>Origin Address</Form.Label>
             <Autocomplete
               onLoad={(autocomplete) => (autocomplete.addListener('place_changed', () => setOriginAddress(autocomplete.getPlace().formatted_address)))}
@@ -115,7 +114,7 @@ const MapWithAutocomplete = ({ onTimeCalculated, googleMapsApiKey }) => {
                 value={destinationAddress}
                 onChange={(e) => setDestinationAddress(e.target.value)}
                 placeholder="Enter destination address"
-                className='custom-input mb-3'
+                className='custom-input mb-3'  
               />
             </Autocomplete>
           </Form.Group>

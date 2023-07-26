@@ -3,10 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import { GoogleMap, useLoadScript } from "@react-google-maps/api";
-
 import SongForm from "./SongForm";
-
-
 import MapWithAutocomplete from "./MapWithAutocomplete";
 
 function App() {
@@ -21,16 +18,10 @@ function App() {
     googleMapsApiKey: googleToken
   });
     if (!isLoaded) return <div>is Loading</div>
-    return <Map />
+    
 };
 
-  function Map() {
-    <GoogleMap
-    zoom={10} 
-    center={{ lat: 44, lng: -80}}
-    mapContainerClassName="map-container"
-   > </GoogleMap>
-  }
+ 
 
   const handleSongSelect = (durationMs) => {
     setSelectedSongDuration(durationMs);
@@ -116,7 +107,7 @@ function App() {
             <Card className="custom-google">
               <Card.Body>
                 <Card.Title>Google Side</Card.Title>
-                <Map />
+               
                 <MapWithAutocomplete
         origin="Origin Address"
         destination="Destination Address"
@@ -124,7 +115,7 @@ function App() {
         googleMapsApiKey={googleToken}
       />
       {/* {timeInMs !== null && <p>Time to travel: {timeInMs} ms</p>} */}
-      <p>Time to travel: {timeInMs} ms</p>
+      <p>It will take {timeInMs/selectedSongDuration} {selectedSongName}s to get where you are going.</p>
     
                <Home />
               </Card.Body>
