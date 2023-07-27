@@ -23,10 +23,10 @@ const MapWithAutocomplete = ({ onTimeCalculated, googleMapsApiKey }) => {
       });  
 
       const destinationLatLngResponse = await axios.get(`${backendBaseUrl}/api/latlng`, {
-        params: {
+        params: { 
           address: destinationAddress,
         },
-      });
+      });  
 
       const originLatLng = originLatLngResponse.data.latlng;
       const destinationLatLng = destinationLatLngResponse.data.latlng;
