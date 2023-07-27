@@ -31,7 +31,7 @@ const SongForm = ({accessToken, onSongSelect, onSongNameSelect}) => {
           <button className="btn btn-primary mb-5" type="submit">Get Top Songs</button>
         </form>
         {submitted && <SongComponent query={query} accessToken={accessToken} onSongSelect={onSongSelect} onSongNameSelect={onSongNameSelect}
-                     />}
+                     /> }
       </div>
     );
   };

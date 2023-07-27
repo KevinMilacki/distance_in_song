@@ -40,12 +40,27 @@ h1 {
                     linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),            
                     linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
   color: white;
+  height: 74vh;
 }
 
 .card.custom-google {
   background: blue;
   color: white;
+  height: 35vh;
+  margin-bottom: 37px;
 }
+
+.card.custom-result {
+  background: blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 2rem;
+  color: white;
+  height: 35vh;
+  
+}
+  
 
 .div.list-group.song-list {
   display: none;
@@ -61,6 +76,11 @@ h1 {
   height: 2.3rem;
   width: 100%;
   margin-bottom: 5px;
+}
+
+.map-container {
+  width: 50%;
+  height: 50vh;
 }
 
 @keyframes App-logo-spin {

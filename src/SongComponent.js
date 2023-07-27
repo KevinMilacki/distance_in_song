@@ -37,7 +37,8 @@ const SongComponent = ({ query, accessToken, onSongSelect, onSongNameSelect }) =
     onSongNameSelect(song.name);
   }
   return (
-    <div>
+    
+     <div>
       {songs.length > 0 ? (
         <ListGroup>
           {songs.map((song) => (
