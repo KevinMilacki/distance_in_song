@@ -7,9 +7,21 @@ This application works in conjunction with the backend software located in the [
 
 ## Requirements for Project
 
+
+- Created a Node.js application to call the Spotify APIs token process, and to call the Google Maps Distance Matrix API and the Google Maps Lat/lng processes
+- Retriving Song title/Length/Picture using a form to call the Spotify API
+- Retrive the distance in MS from the Google Maps API, using Places to autocomplete get the address
+- Created a custom formula using the Data inputed on both ends to calculate the amount of times a song will play form Point A to Point B
+- Developed the application using the React enviroment
+---
+
+To install the project you will need to clone the repo and run npm install in the project folder to initiate all of the dependencies. The Express backend also needs to be 
+running and the provided secrets will need to be added to that repos .env file to run.
+=======
 - Created a Node.js application to call the Spotify APIs token process to procure the information without having it become accessible to front end client
 - Retriving data from Spotify's API
 - Developed the application using the React enviroment
 
 
   
+
