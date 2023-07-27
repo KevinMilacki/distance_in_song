@@ -14,5 +14,8 @@ This application works in conjunction with the backend software located in the [
 - Developed the application using the React enviroment
 ---
 
-To install the project you will need to clone the repo and run npm install in the project folder to initiate all of the dependencies. The Express backend also needs to be 
-running and the provided secrets will need to be added to that repos .env file to run.
+To install the project you will need to clone the repo and run npm install in the project folder to initiate all of the dependencies. you will also need to run
+
+npm config set legacy-peer-deps true
+
+

@@ -7,13 +7,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 
 const backendBaseUrl = 'http://localhost:3001'; 
+const libraries = ['places'];
 
 const MapWithAutocomplete = ({ onTimeCalculated, googleMapsApiKey }) => {
   const [originAddress, setOriginAddress] = useState('');
   const [destinationAddress, setDestinationAddress] = useState('');
 
-  const handlePlaceChanged = async () => {
-    try { 
+  const handlePlaceChanged = async () => {  
+    try {  
      
       const originLatLngResponse = await axios.get(`${backendBaseUrl}/api/latlng`, {
         params: {
@@ -60,26 +61,26 @@ const MapWithAutocomplete = ({ onTimeCalculated, googleMapsApiKey }) => {
 
 
   
+ 
 
-  const libraries = ['places'];
 
   
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey,
-    libraries,
+    libraries, 
   });
 
   if (loadError) {
     return <div>Error loading Google Maps API</div>;
   }
-
+ 
   if (!isLoaded) { 
     return <div>Loading...</div>;
   }
 
   return (
-    <>
-      <Row>      
+    <> 
+      <Row>        
                  <Form.Group controlId="originAddress" >
             <Form.Label>Origin Address</Form.Label>
             <Autocomplete
@@ -93,7 +94,7 @@ const MapWithAutocomplete = ({ onTimeCalculated, googleMapsApiKey }) => {
                 className='custom-input'
               />
             </Autocomplete> 
-          </Form.Group>  
+          </Form.Group>   
        
       
           <Form.Group controlId="destinationAddress">
@@ -101,7 +102,7 @@ const MapWithAutocomplete = ({ onTimeCalculated, googleMapsApiKey }) => {
             <Autocomplete
               onLoad={(autocomplete) => (autocomplete.addListener('place_changed', () => setDestinationAddress(autocomplete.getPlace().formatted_address)))}
             >
-              <input
+              <input  
                 type="text"
                 value={destinationAddress}
                 onChange={(e) => setDestinationAddress(e.target.value)}

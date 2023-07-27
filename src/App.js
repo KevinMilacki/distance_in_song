@@ -6,6 +6,9 @@ import {  useLoadScript } from "@react-google-maps/api";
 import SongForm from "./SongForm";
 import MapWithAutocomplete from "./MapWithAutocomplete";
 
+
+
+
 function App() {
   const [token, setToken] = useState("");
   const [googleToken, setGoogleToken] = useState("");
@@ -90,8 +93,10 @@ function App() {
 
   return (
     <>
+
       <Container>
         <Row>
+
           <Col>
             <h1>Distance in Song</h1>
           </Col>
@@ -124,9 +129,9 @@ function App() {
         googleMapsApiKey={googleToken}
       />
       {/* {timeInMs !== null && <p>Time to travel: {timeInMs} ms</p>} */}
+      <Home />
    
     
-               <Home />
               </Card.Body>
             </Card >
             </Row>
@@ -142,6 +147,7 @@ function App() {
           </Col>
         </Row>
       </Container>
+
     </>
   );
 }
