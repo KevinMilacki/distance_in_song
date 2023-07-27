@@ -5,9 +5,8 @@ import axios from 'axios';
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-// const googleMapsApiKey = 'YOUR_GOOGLE_MAPS_API_KEY'; // Replace with your actual API key
-const backendBaseUrl = 'http://localhost:3001'; // Replace with your backend API URL
 
+const backendBaseUrl = 'http://localhost:3001'; 
 
 const MapWithAutocomplete = ({ onTimeCalculated, googleMapsApiKey }) => {
   const [originAddress, setOriginAddress] = useState('');
@@ -15,7 +14,7 @@ const MapWithAutocomplete = ({ onTimeCalculated, googleMapsApiKey }) => {
 
   const handlePlaceChanged = async () => {
     try { 
-      // Fetch lat/lng from the backend API for origin and destination
+     
       const originLatLngResponse = await axios.get(`${backendBaseUrl}/api/latlng`, {
         params: {
           address: originAddress,
@@ -31,7 +30,7 @@ const MapWithAutocomplete = ({ onTimeCalculated, googleMapsApiKey }) => {
       const originLatLng = originLatLngResponse.data.latlng;
       const destinationLatLng = destinationLatLngResponse.data.latlng;
 
-      // Make the backend API call to get the time duration
+      
       const response = await axios.get(`${backendBaseUrl}/api/distance`, {
         params: {
           originLat: originLatLng.lat,
@@ -64,7 +63,7 @@ const MapWithAutocomplete = ({ onTimeCalculated, googleMapsApiKey }) => {
 
   const libraries = ['places'];
 
-  // Load the Google Maps API and the Places API using the useLoadScript hook
+  
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey,
     libraries,
