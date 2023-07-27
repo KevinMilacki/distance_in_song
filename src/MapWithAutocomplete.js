@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
-import { Form, Col, Row, Button } from 'react-bootstrap';
-import { LoadScript, Autocomplete, useLoadScript} from '@react-google-maps/api';
+import { Form,  Row, Button } from 'react-bootstrap';
+import {  Autocomplete, useLoadScript} from '@react-google-maps/api';
 import axios from 'axios';
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 // const googleMapsApiKey = 'YOUR_GOOGLE_MAPS_API_KEY'; // Replace with your actual API key
 const backendBaseUrl = 'http://localhost:3001'; // Replace with your backend API URL
-const lib = '[places]'
+
 
 const MapWithAutocomplete = ({ onTimeCalculated, googleMapsApiKey }) => {
   const [originAddress, setOriginAddress] = useState('');
   const [destinationAddress, setDestinationAddress] = useState('');
 
   const handlePlaceChanged = async () => {
-    try {
+    try { 
       // Fetch lat/lng from the backend API for origin and destination
       const originLatLngResponse = await axios.get(`${backendBaseUrl}/api/latlng`, {
         params: {
           address: originAddress,
         },
-      });
+      });  
 
       const destinationLatLngResponse = await axios.get(`${backendBaseUrl}/api/latlng`, {
         params: {
@@ -60,14 +60,7 @@ const MapWithAutocomplete = ({ onTimeCalculated, googleMapsApiKey }) => {
   };
 
 
-  const handleError = (error) => {
-    console.log('Error in API: ', error);
-  };
-
-  const handleLoad = (map, google) => {
-    console.log('Google Maps API loaded successfully.');
-    // You can use the 'map' and 'google' objects here
-  };
+  
 
   const libraries = ['places'];
 
@@ -81,13 +74,13 @@ const MapWithAutocomplete = ({ onTimeCalculated, googleMapsApiKey }) => {
     return <div>Error loading Google Maps API</div>;
   }
 
-  if (!isLoaded) {
+  if (!isLoaded) { 
     return <div>Loading...</div>;
   }
 
   return (
     <>
-      <Row>
+      <Row>      
                  <Form.Group controlId="originAddress" >
             <Form.Label>Origin Address</Form.Label>
             <Autocomplete
@@ -100,10 +93,10 @@ const MapWithAutocomplete = ({ onTimeCalculated, googleMapsApiKey }) => {
                 placeholder="Enter origin address"
                 className='custom-input'
               />
-            </Autocomplete>
-          </Form.Group>
+            </Autocomplete> 
+          </Form.Group>  
        
-     
+      
           <Form.Group controlId="destinationAddress">
             <Form.Label>Destination Address</Form.Label>
             <Autocomplete
@@ -119,7 +112,7 @@ const MapWithAutocomplete = ({ onTimeCalculated, googleMapsApiKey }) => {
             </Autocomplete>
           </Form.Group>
        
-      </Row>
+      </Row>   
       <Button onClick={handlePlaceChanged}>Calculate Time</Button>
     </>
   );

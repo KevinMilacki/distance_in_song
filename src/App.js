@@ -1,8 +1,8 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
-import { GoogleMap, useLoadScript } from "@react-google-maps/api";
+import { Container, Row, Col, Card,  Button } from "react-bootstrap";
+import {  useLoadScript } from "@react-google-maps/api";
 import SongForm from "./SongForm";
 import MapWithAutocomplete from "./MapWithAutocomplete";
 
@@ -21,7 +21,10 @@ function App() {
     
 };
 
- 
+ function songTimes(a, b) {
+    const result = a / b
+    return result.toFixed(2);
+ }
 
   const handleSongSelect = (durationMs) => {
     setSelectedSongDuration(durationMs);
@@ -37,7 +40,7 @@ function App() {
 
       if (response.ok) {
         const data = await response.text();
-        setToken(data); // Display the retrieved string
+        setToken(data); 
       } else {
         throw new Error("Error:1 " + response.status);
       }
@@ -52,7 +55,7 @@ function App() {
 
       if (response.ok) {
         const data = await response.text();
-        setGoogleToken(data); // Display the retrieved string
+        setGoogleToken(data); 
       } else {
         throw new Error("Error:1 " + response.status);
       }
@@ -79,6 +82,12 @@ function App() {
   };
   console.log(token);
 
+  const handleReset = () => {
+    setSelectedSongName(null);
+    setSelectedSongDuration(null);
+    setTimeInMs(null);
+  }
+
   return (
     <>
       <Container>
@@ -87,7 +96,7 @@ function App() {
             <h1>Distance in Song</h1>
           </Col>
         </Row>
-        <Row>
+        <Row> 
           <Col>
             <Card className="custom-spotify">
               <Card.Body>
@@ -98,12 +107,12 @@ function App() {
                   onSongSelect={handleSongSelect}  
                   onSongNameSelect={handleSongNameSelect}
                 />
-                <p>Selected Song Duration: {selectedSongDuration} ms</p>
-                <p>Selected Song Name: {selectedSongName}</p>
+               
               </Card.Body>
             </Card>
           </Col>
           <Col>
+            <Row>
             <Card className="custom-google">
               <Card.Body>
                 <Card.Title>Google Side</Card.Title>
@@ -115,11 +124,21 @@ function App() {
         googleMapsApiKey={googleToken}
       />
       {/* {timeInMs !== null && <p>Time to travel: {timeInMs} ms</p>} */}
-      <p>It will take {timeInMs/selectedSongDuration} {selectedSongName}s to get where you are going.</p>
+   
     
                <Home />
               </Card.Body>
-            </Card>
+            </Card >
+            </Row>
+            <Row>
+              {timeInMs && selectedSongName ? <Card className="custom-result vertical-center">
+                <Card.Body>
+                  <Card.Title></Card.Title>
+                  <p>It will take {songTimes(timeInMs, selectedSongDuration)} {selectedSongName}s to get where you are going.</p> 
+                  <Button onClick={handleReset}>Reset</Button>
+                </Card.Body>
+              </Card>: <p></p>}
+            </Row>
           </Col>
         </Row>
       </Container>
