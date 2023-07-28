@@ -8,13 +8,13 @@ This application works in conjunction with the backend software located in the [
 ## Requirements for Project
 **These are a list of the features that were required by WebDev2 project.**
 
--Analyze data that is stored in arrays, objects, sets or maps and display information about it in your app.
--Create a function that accepts two or more input parameters and returns a value that is calculated or determined by the inputs.  Basic math functions don’t count (e.g. addition, etc).
--Visualize data in a user friendly way. (e.g. graph, chart, etc)
--Retrieve data from a third-party API and use it to display something within your app.
--Create a node.js web server using a modern framework such as Express.js or Fastify.  Serve at least one route that your app uses (must serve more than just the index.html file).
--Implement modern interactive UI features (e.g. table/data sorting, autocomplete, drag-and-drop, calendar-date-picker, etc).
--Develop your project using a common JavaScript framework such as React, Angular, or Vue.
+- Analyze data that is stored in arrays, objects, sets or maps and display information about it in your app.
+- Create a function that accepts two or more input parameters and returns a value that is calculated or determined by the inputs.  Basic math functions don’t count (e.g. addition, etc).
+- Visualize data in a user friendly way. (e.g. graph, chart, etc)
+- Retrieve data from a third-party API and use it to display something within your app.
+- Create a node.js web server using a modern framework such as Express.js or Fastify.  Serve at least one route that your app uses (must serve more than just the index.html file).
+- Implement modern interactive UI features (e.g. table/data sorting, autocomplete, drag-and-drop, calendar-date-picker, etc).
+- Develop your project using a common JavaScript framework such as React, Angular, or Vue.
 
 **Below is how these were implemented.** 
 
